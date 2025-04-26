@@ -1,0 +1,241 @@
+.navbar {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+}
+
+.navbar.scrolled {
+    padding: 5px 0;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 0.9;
+    transition: transform 0.3s ease; 
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.cgv {
+    color: #00b8d4;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.motors {
+    color: #00b8d4;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.navbar .container {
+    position: relative;
+}
+
+.navbar-collapse {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-right {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: #333;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0 12px;
+    padding: 6px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #00b8d4;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00b8d4;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+.auth-link {
+    border-radius: 20px;
+    padding: 6px 15px !important;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.auth-link.login {
+    border: 1px solid #00b8d4;
+}
+
+.auth-link.login:hover {
+    background-color: rgba(0, 184, 212, 0.1);
+}
+
+.auth-link.register {
+    background-color: #00b8d4;
+    color: white !important;
+}
+
+.auth-link.register:hover {
+    background-color: #0088a3;
+}
+
+.auth-link::after {
+    display: none;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.4rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.user-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #00b8d4;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 184, 212, 0.3);
+}
+
+.user-circle:hover, .user-circle:focus {
+    background-color: #0088a3;
+    transform: scale(1.05);
+    color: white;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 10px;
+    min-width: 200px;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 184, 212, 0.1);
+}
+
+.dropdown-item.text-danger:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.dropdown-divider {
+    margin: 0.5rem 0;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        display: block;
+    }
+    
+    .navbar-right {
+        position: static;
+        display: block;
+        margin-top: 15px;
+    }
+    
+    .nav-link {
+        margin: 8px 0;
+        padding-left: 10px;
+        text-align: left;
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    .auth-link {
+        margin: 8px 0;
+        display: inline-block;
+        width: auto;
+        text-align: left;
+    }
+    
+    .dropdown-menu {
+        border: none;
+        box-shadow: none;
+        padding-left: 1.5rem;
+    }
+    
+    .user-circle {
+        margin-left: 10px;
+    }
+    
+    .navbar-nav {
+        align-items: flex-start;
+    }
+    
+    ul.navbar-nav {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .mobile-separator {
+        height: 1px;
+        background-color: #e0e0e0;
+        width: 100%;
+        margin: 10px 0;
+        display: block;
+    }
+}

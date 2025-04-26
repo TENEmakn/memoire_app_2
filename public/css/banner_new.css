@@ -1,0 +1,532 @@
+/* Styles de base de la bannière */
+.banner {
+    position: relative;
+    padding: 80px 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 650px;
+    overflow: hidden;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 10, 30, 0.65);
+    z-index: 1;
+}
+
+.banner .container {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-content {
+    padding: 50px 0;
+    color: #fff;
+}
+
+.banner-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.banner-accent {
+    color: #4ecdc4;
+}
+
+.banner-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.banner-cta {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #4ecdc4;
+    color: #333;
+    font-weight: 600;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.banner-cta:hover {
+    background: #ff6b6b;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.banner-cta i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.banner-cta:hover i {
+    transform: translateX(5px);
+}
+
+.banner-search-container {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 12px;
+    padding: 35px 45px 45px;
+    box-shadow: 0 15px 35px rgba(7, 20, 40, 0.25);
+    max-width: 1100px;
+    margin: 30px auto 0;
+    border: 1px solid rgba(78, 205, 196, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.search-form-title {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 18px;
+    letter-spacing: 0.5px;
+}
+
+.search-form-title:after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 3px;
+    background: #4ecdc4;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
+
+.search-form-title i {
+    color: #4ecdc4;
+    margin-right: 12px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.wide-field {
+    grid-column: span 1.5;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.form-select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #34495e;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234ecdc4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.form-select:focus {
+    border-color: #4ecdc4;
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.15);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+.form-select:hover {
+    border-color: #4ecdc4;
+}
+
+.form-select:disabled {
+    background-color: #f5f7fa;
+    color: #95a5a6;
+    cursor: not-allowed;
+}
+
+.btn-search {
+    width: 60%;
+    padding: 15px 25px;
+    background: #4ecdc4;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 20px auto 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-search:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-search:hover {
+    background: #ff6b6b;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-search:hover:before {
+    left: 100%;
+}
+
+.btn-search:active {
+    transform: translateY(-1px);
+}
+
+.btn-search i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+/* Motion box for decoration */
+.motion-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.motion-line {
+    position: absolute;
+    width: 150%;
+    height: 1px;
+    background: rgba(78, 205, 196, 0.15);
+    animation: motionLine 15s linear infinite;
+}
+
+.motion-line:nth-child(1) {
+    top: 25%;
+    left: -25%;
+    transform: rotate(25deg);
+}
+
+.motion-line:nth-child(2) {
+    top: 50%;
+    left: -25%;
+    transform: rotate(-15deg);
+    animation-delay: 5s;
+}
+
+.motion-line:nth-child(3) {
+    top: 75%;
+    left: -25%;
+    transform: rotate(10deg);
+    animation-delay: 10s;
+}
+
+@keyframes motionLine {
+    0% {
+        transform: translateX(0) rotate(var(--rotate, 0deg));
+    }
+    100% {
+        transform: translateX(100%) rotate(var(--rotate, 0deg));
+    }
+}
+
+/* Nouveaux éléments pour rendre la bannière attrayante */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-icon {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 2.5rem;
+    animation: float 8s ease-in-out infinite;
+    z-index: 2;
+    text-shadow: 0 0 20px rgba(78, 205, 196, 0.6);
+}
+
+.floating-icon:nth-child(2) {
+    animation-delay: 2s;
+}
+
+.floating-icon:nth-child(3) {
+    animation-delay: 4s;
+}
+
+.floating-icon:nth-child(4) {
+    animation-delay: 6s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.trust-badge {
+    background: rgba(78, 205, 196, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.trust-badge:hover {
+    transform: translateY(-3px);
+    background: rgba(78, 205, 196, 0.3);
+}
+
+.trust-badge i {
+    margin-right: 8px;
+    color: #4ecdc4;
+    font-size: 1rem;
+}
+
+.banner-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: #4ecdc4;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(78, 205, 196, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(78, 205, 196, 0);
+    }
+}
+
+.banner-features {
+    margin: 20px 0 25px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.feature-item i {
+    color: #4ecdc4;
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.quick-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.filter-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-right: 5px;
+}
+
+.quick-filter-btn {
+    background: #f5f7fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-filter-btn:hover, .quick-filter-btn.active {
+    background: #4ecdc4;
+    color: #fff;
+    border-color: #4ecdc4;
+}
+
+.quick-filter-btn i {
+    margin-right: 5px;
+}
+
+.search-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.search-info i {
+    color: #4ecdc4;
+    margin-right: 8px;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .banner-content {
+        text-align: center;
+        padding: 30px 0;
+    }
+    
+    .banner-search-container {
+        margin-top: 0;
+    }
+    
+    .search-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .wide-field {
+        grid-column: span 1;
+    }
+    
+    .btn-search {
+        width: 100%;
+    }
+    
+    .trust-badges {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .floating-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner {
+        padding: 60px 0;
+    }
+    
+    .banner-title {
+        font-size: 2.5rem;
+    }
+    
+    .search-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .banner-search-container {
+        padding: 25px 30px 35px;
+    }
+    
+    .form-select {
+        padding: 12px 15px;
+    }
+    
+    .btn-search {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .wide-field {
+        grid-column: span 1;
+    }
+    
+    .banner-badge {
+        margin: 0 auto 15px;
+        display: table;
+    }
+    
+    .quick-filters {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-title {
+        font-size: 2rem;
+    }
+    
+    .banner-subtitle {
+        font-size: 1rem;
+    }
+    
+    .trust-badge {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .feature-item {
+        font-size: 0.9rem;
+    }
+}
+
