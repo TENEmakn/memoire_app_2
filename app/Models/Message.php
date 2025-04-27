@@ -8,61 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
-    
-    /**
-     * La table associée au modèle.
-     *
-     * @var string
-     */
-    protected $table = 'messages';
-    
-    /**
-     * Les attributs qui sont mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
-        'nomcomplet_sender',
-        'email_sender',
-        'telephone_sender',
+        'sender_id',
+        'receiver_id',
         'sujet',
         'message',
         'statut',
-        'sender_id',
-        'receiver_id'
+        'nomcomplet_sender',
+        'email_sender',
+        'telephone_sender'
     ];
-    
-    /**
-     * Les attributs qui doivent être mutés en dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at'
-    ];
-    
-    /**
-     * Relation avec l'utilisateur qui a géré ce message (optionnel)
-     */
-    public function user()
+
+    public function sender()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'sender_id');
     }
-    
-    /**
-     * Vérifier si le message a été lu
-     */
-    public function isRead()
+
+    public function receiver()
     {
-        return $this->statut !== 'non_lu';
+        return $this->belongsTo(User::class, 'receiver_id');
     }
-    
-    /**
-     * Vérifier si le message a été traité
-     */
-    public function isProcessed()
-    {
-        return $this->statut === 'traite';
-    }
-}
+} 

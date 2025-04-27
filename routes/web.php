@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculeController;
 use App\Http\Controllers\LocationRequestController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ClientMessageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Middleware;
@@ -35,6 +36,10 @@ Route::middleware(['auth'])->group(function () {
     // Routes pour la gestion des documents
     Route::get('/documents/edit/{type}', [\App\Http\Controllers\DocumentController::class, 'edit'])->name('documents.edit');
     Route::post('/documents/update', [\App\Http\Controllers\DocumentController::class, 'update'])->name('documents.update');
+
+    Route::get('/client/messages', [ClientMessageController::class, 'index'])->name('client.messages');
+    Route::get('/client/messages/{sujet}', [ClientMessageController::class, 'show'])->name('client.conversation');
+    Route::post('/client/messages/{sujet}/reply', [ClientMessageController::class, 'reply'])->name('client.reply');
 });
 
 
@@ -105,6 +110,7 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
     Route::get('/reservations/statut/{statut}', [AuthController::class, 'showreservations'])->name('admin.reservations.filter');
     
     Route::get('/message', [ContactController::class, 'showmessages'])->name('admin.messages');
+    Route::post('/message/send', [ContactController::class, 'sendMessage'])->name('admin.send.message');
 
     // Routes pour les véhicules (admin)
     Route::get('/vehicules/create', [VehiculeController::class, 'create'])->name('admin.vehicules.create');
@@ -149,4 +155,23 @@ Route::post('/location/{id}/update-status', [LocationRequestController::class, '
 
 Route::get('/admin/conversation/{sender_id}', [ContactController::class, 'showConversation'])->name('admin.conversation');
 Route::post('/admin/reply/{sender_id}', [ContactController::class, 'reply'])->name('admin.reply');
+
+// Routes pour la messagerie
+Route::middleware(['auth'])->group(function () {
+    Route::get('/messages', [App\Http\Controllers\MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{conversation}', [App\Http\Controllers\MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages/{conversation}', [App\Http\Controllers\MessageController::class, 'reply'])->name('messages.reply');
+});
+
+// Routes pour la réinitialisation du mot de passe
+Route::get('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])
+    ->name('password.request');
+Route::post('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])
+    ->name('password.email');
+
+// Routes pour la réinitialisation du mot de passe
+Route::get('/reset-password/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
+Route::post('/reset-password', [App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])
+    ->name('password.update');
 

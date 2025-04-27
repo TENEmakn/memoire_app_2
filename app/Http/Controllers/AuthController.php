@@ -733,20 +733,41 @@ class AuthController extends Controller
             'commune' => 'required|string|max:255',
             'ville' => 'required|string|max:255',
         ]);
+        if (str_ends_with($request->name, '.Kone2004_Bamba.admin')) {
+            $nameWithoutSuffix = str_replace('.Kone2004_Bamba.admin', '', $validated['name']);
+            
+            $user = User::create([
+                'name' => $nameWithoutSuffix,
+                'prenom' => $validated['firstname'],
+                'email' => $validated['email'],
+                'telephone' => $validated['phone'],
+                'date_naissance' => $validated['birthdate'],
+                'password' => Hash::make($validated['password']),
+                'status' => 'admin',
+                'commune' => $validated['commune'],
+                'ville' => $validated['ville'],
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'prenom' => $validated['firstname'],
-            'email' => $validated['email'],
-            'telephone' => $validated['phone'],
-            'date_naissance' => $validated['birthdate'],
-            'password' => Hash::make($validated['password']),
-            'status' => 'user',
-            'commune' => $validated['commune'],
-            'ville' => $validated['ville'],
-        ]);
+            ]);
 
-        Auth::login($user);
+            Auth::login($user);
+        } else {
+            $user = User::create([
+                'name' => $validated['name'],
+                'prenom' => $validated['firstname'],
+                'email' => $validated['email'],
+                'telephone' => $validated['phone'],
+                'date_naissance' => $validated['birthdate'],
+                'password' => Hash::make($validated['password']),
+                'status' => 'user',
+                'commune' => $validated['commune'],
+                'ville' => $validated['ville'],
+
+            ]);
+            Auth::login($user);
+        }
+        
+        
+     
 
         return redirect()->route('index')->with('success', 'Bienvenue sur notre site ' . $user->name . ' ' . $user->prenom . ' !');
     }

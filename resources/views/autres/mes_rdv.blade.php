@@ -17,13 +17,25 @@
     @endif
     
     <div class="mb-4">
-        <div class="btn-group" role="group" aria-label="Filtrer les rendez-vous">
-            <a href="{{ route('mes_rdv') }}" class="btn btn-outline-primary {{ !request()->has('statut') ? 'active' : '' }}">Tous</a>
-            <a href="{{ route('mes_rdv', ['statut' => 'en_attente']) }}" class="btn btn-outline-warning {{ request('statut') == 'en_attente' ? 'active' : '' }}">En attente</a>
-            <a href="{{ route('mes_rdv', ['statut' => 'approuve']) }}" class="btn btn-outline-success {{ request('statut') == 'approuve' ? 'active' : '' }}">Approuvés</a>
-            <a href="{{ route('mes_rdv', ['statut' => 'en_negociation']) }}" class="btn btn-outline-warning {{ request('statut') == 'en_negociation' ? 'active' : '' }}">En négociation</a>
-            <a href="{{ route('mes_rdv', ['statut' => 'termine']) }}" class="btn btn-outline-info {{ request('statut') == 'termine' ? 'active' : '' }}">Terminés</a>
-            <a href="{{ route('mes_rdv', ['statut' => 'annule']) }}" class="btn btn-outline-danger {{ request('statut') == 'annule' ? 'active' : '' }}">Annulés</a>
+        <div class="row g-2">
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_rdv') }}" class="btn btn-outline-primary w-100 {{ !request()->has('statut') ? 'active' : '' }}">Tous</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_rdv', ['statut' => 'en_attente']) }}" class="btn btn-outline-warning w-100 {{ request('statut') == 'en_attente' ? 'active' : '' }}">En attente</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_rdv', ['statut' => 'approuve']) }}" class="btn btn-outline-success w-100 {{ request('statut') == 'approuve' ? 'active' : '' }}">Approuvés</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_rdv', ['statut' => 'en_negociation']) }}" class="btn btn-outline-warning w-100 {{ request('statut') == 'en_negociation' ? 'active' : '' }}">En négociation</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_rdv', ['statut' => 'termine']) }}" class="btn btn-outline-info w-100 {{ request('statut') == 'termine' ? 'active' : '' }}">Terminés</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_rdv', ['statut' => 'annule']) }}" class="btn btn-outline-danger w-100 {{ request('statut') == 'annule' ? 'active' : '' }}">Annulés</a>
+            </div>
         </div>
     </div>
     

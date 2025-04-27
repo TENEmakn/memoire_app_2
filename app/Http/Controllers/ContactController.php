@@ -50,7 +50,7 @@ class ContactController extends Controller
             $message->sender_id = auth()->id(); // ou Auth::id() si tu préfères
 
             // Le receiver_id peut être défini plus tard ou laissé à null
-            $message->receiver_id = null;
+            $message->receiver_id = 1;
 
             $message->save(); // Correction de la syntaxe (manquait un point-virgule)
 
@@ -67,9 +67,21 @@ class ContactController extends Controller
         $users = User::where('status', 'user')->get();
         
         // Récupérer les derniers messages pour chaque utilisateur
-        $messages = Message::whereIn('sender_id', $users->pluck('id'))
-            ->select('sender_id', 'nomcomplet_sender', 'email_sender', 'telephone_sender', 'sujet', 'message', 'statut', 'created_at')
-            ->orderBy('created_at', 'desc')
+        $query = Message::whereIn('sender_id', $users->pluck('id'))
+            ->select('sender_id', 'nomcomplet_sender', 'email_sender', 'telephone_sender', 'sujet', 'message', 'statut', 'created_at');
+
+        // Ajouter la recherche si un terme de recherche est fourni
+        if (request()->has('search')) {
+            $searchTerm = request('search');
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('nomcomplet_sender', 'like', "%{$searchTerm}%")
+                  ->orWhere('email_sender', 'like', "%{$searchTerm}%")
+                  ->orWhere('sujet', 'like', "%{$searchTerm}%")
+                  ->orWhere('message', 'like', "%{$searchTerm}%");
+            });
+        }
+
+        $messages = $query->orderBy('created_at', 'desc')
             ->get()
             ->groupBy('sender_id')
             ->map(function ($group) {
@@ -115,5 +127,55 @@ class ContactController extends Controller
         $message->save();
 
         return redirect()->back()->with('success', 'Message envoyé avec succès');
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $request->validate([
+            'messageType' => 'required|in:all,single',
+            'email' => 'required_if:messageType,single|email|nullable',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        try {
+            if ($request->messageType === 'all') {
+                // Envoyer à tous les utilisateurs
+                $users = User::where('status', 'user')->get();
+                foreach ($users as $user) {
+                    $message = new Message();
+                    $message->sender_id = auth()->id();
+                    $message->receiver_id = $user->id;
+                    $message->nomcomplet_sender = auth()->user()->name;
+                    $message->email_sender = auth()->user()->email;
+                    $message->telephone_sender = auth()->user()->phone ?? '';
+                    $message->sujet = $request->subject;
+                    $message->message = $request->message;
+                    $message->statut = 'non_lu';
+                    $message->save();
+                }
+            } else {
+                // Envoyer à un seul utilisateur
+                $user = User::where('email', $request->email)->first();
+                if (!$user) {
+                    return redirect()->back()->with('error', 'Utilisateur non trouvé avec cet email.');
+                }
+
+                $message = new Message();
+                $message->sender_id = auth()->id();
+                $message->receiver_id = $user->id;
+                $message->nomcomplet_sender = auth()->user()->name;
+                $message->email_sender = auth()->user()->email;
+                $message->telephone_sender = auth()->user()->phone ?? '';
+                $message->sujet = $request->subject;
+                $message->message = $request->message;
+                $message->statut = 'non_lu';
+                $message->save();
+            }
+
+            return redirect()->back()->with('success', 'Message(s) envoyé(s) avec succès');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.');
+        }
     }
 } 

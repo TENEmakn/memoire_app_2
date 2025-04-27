@@ -27,10 +27,13 @@
                         $notificationCount++;
                     }
                     
+                    // 2. Vérifier les messages non lus
+                    $unreadMessagesCount = \App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count();
+                    $notificationCount += $unreadMessagesCount;
+                    
                     // 3. Ajouter ici d'autres vérifications selon les besoins
                     // Exemples :
                     // - Demandes de réservation en attente
-                    // - Messages non lus
                     // - Rappels de rendez-vous
                     // - Notifications de système
                 @endphp
@@ -105,7 +108,15 @@
                             @endif
                             <li><a class="dropdown-item" href="{{ route('mes_reservations') }}"><i class="fas fa-calendar-alt me-2"></i>Mes Reservations</a></li>
                             <li><a class="dropdown-item" href="{{ route('mes_rdv') }}"><i class="fas fa-calendar-alt me-2"></i>Mes Rendez-vous</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-envelope me-2"></i>Mes Messages</a></li>
+                            <li><a class="dropdown-item" href="{{ route('client.messages') }}"><i class="fas fa-envelope me-2"></i>Mes Messages 
+                            @php
+                                        $user = Auth::user();
+                                        $unreadMessagesCount = \App\Models\Message::where('statut', 'non_lu')->where('receiver_id', $user->id)->count();
+                                    @endphp
+                                    @if($unreadMessagesCount > 0)
+                                        <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadMessagesCount }}</span>
+                                    @endif
+                            </a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="{{ route('auth.logout') }}" method="POST">

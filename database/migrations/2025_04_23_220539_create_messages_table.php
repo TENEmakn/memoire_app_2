@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('sujet');
             $table->text('message');
             $table->enum('statut', ['non_lu', 'lu'])->default('non_lu');
-            $table->foreignId('sender_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('receiver_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('sender_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('receiver_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
-        });
+    });
     }
 
     /**

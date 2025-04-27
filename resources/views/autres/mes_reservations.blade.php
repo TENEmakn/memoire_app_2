@@ -11,12 +11,22 @@
     @endif
     
     <div class="mb-4">
-        <div class="btn-group" role="group" aria-label="Filtrer les réservations">
-            <a href="{{ route('mes_reservations') }}" class="btn btn-outline-primary {{ !request()->has('statut') ? 'active' : '' }}">Toutes</a>
-            <a href="{{ route('mes_reservations', ['statut' => 'en_attente']) }}" class="btn btn-outline-warning {{ request('statut') == 'en_attente' ? 'active' : '' }}">En attente</a>
-            <a href="{{ route('mes_reservations', ['statut' => 'approuvee']) }}" class="btn btn-outline-success {{ request('statut') == 'approuvee' ? 'active' : '' }}">Validées</a>
-            <a href="{{ route('mes_reservations', ['statut' => 'terminee']) }}" class="btn btn-outline-info {{ request('statut') == 'terminee' ? 'active' : '' }}">Terminées</a>
-            <a href="{{ route('mes_reservations', ['statut' => 'refusee']) }}" class="btn btn-outline-danger {{ request('statut') == 'refusee' ? 'active' : '' }}">Refusées</a>
+        <div class="row g-2">
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_reservations') }}" class="btn btn-outline-primary w-100 {{ !request()->has('statut') ? 'active' : '' }}">Toutes</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_reservations', ['statut' => 'en_attente']) }}" class="btn btn-outline-warning w-100 {{ request('statut') == 'en_attente' ? 'active' : '' }}">En attente</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_reservations', ['statut' => 'approuvee']) }}" class="btn btn-outline-success w-100 {{ request('statut') == 'approuvee' ? 'active' : '' }}">Validées</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_reservations', ['statut' => 'terminee']) }}" class="btn btn-outline-info w-100 {{ request('statut') == 'terminee' ? 'active' : '' }}">Terminées</a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <a href="{{ route('mes_reservations', ['statut' => 'refusee']) }}" class="btn btn-outline-danger w-100 {{ request('statut') == 'refusee' ? 'active' : '' }}">Refusées</a>
+            </div>
         </div>
     </div>
     

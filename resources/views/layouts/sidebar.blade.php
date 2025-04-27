@@ -18,7 +18,8 @@
                         ->count();
                     $locationEnAttenteCount = \App\Models\LocationRequest::where('statut', 'en_attente')->count();
                     $rdvEnAttenteCount = \App\Models\RendezVousVente::where('statut', 'en_attente')->count();
-                    $totalNotifications = $usersWithUnverifiedPieces + $locationEnAttenteCount + $rdvEnAttenteCount;
+                    $messageNonLuCount = \App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count();
+                    $totalNotifications = $usersWithUnverifiedPieces + $locationEnAttenteCount + $rdvEnAttenteCount + $messageNonLuCount;
                 @endphp
                 @if($totalNotifications > 0)
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger pulse-animation">
@@ -123,12 +124,14 @@
                                     @endif
                                 </a>
                             </li>
+                            @if(Auth::user()->status == 'admin')
                             <li class="nav-item">
                                 <a href="{{ route('admin.gestionnaire') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('users.managers') ? 'active' : '' }}">
                                     <i class="fas fa-user-shield me-2 submenu-icon"></i>
                                     Gestionnaires
                                 </a>
                             </li>
+                            @endif
                             <li class="nav-item">
                                 <a href="{{ route('admin.chauffeur') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('users.drivers') ? 'active' : '' }}">
                                     <i class="fas fa-user-astronaut me-2 submenu-icon"></i>
@@ -188,7 +191,9 @@
                             <i class="fas fa-headset"></i>
                         </div>
                         <span>Assistances</span>
-                        <i class="fas fa-chevron-down ms-auto transition-transform"></i>
+                        @if(\App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count() > 0)
+                            <span class="position-absolute end-0 me-3 badge rounded-pill bg-danger">{{ \App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count() }}</span>
+                        @endif
                     </a>
                     <div class="collapse {{ request()->routeIs('assistance*') ? 'show' : '' }}" id="assistanceSubMenu">
                         <ul class="nav flex-column ms-4 mt-2 submenu-items">
@@ -196,14 +201,20 @@
                                 <a href="{{ route('admin.messages') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}">
                                     <i class="fas fa-envelope me-2 submenu-icon"></i>
                                     Messages
+                                    @php
+                                        $unreadMessagesCount = \App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count();
+                                    @endphp
+                                    @if($unreadMessagesCount > 0)
+                                        <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadMessagesCount }}</span>
+                                    @endif
                                 </a>
-                            </li>
+                            <!-- </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('admin.annulations.*') ? 'active' : '' }}">
                                     <i class="fas fa-ban me-2 submenu-icon"></i>
                                     Annulations
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </li>
@@ -392,7 +403,35 @@
                         </a>
                     </li>
 
-                
+                    <!-- Assistance -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link d-flex align-items-center px-4 py-3 text-dark hover-bg-light hover-text-primary position-relative {{ request()->routeIs('assistance*') ? 'active' : '' }}" data-bs-toggle="collapse" data-bs-target="#mobileAssistanceSubMenu" aria-expanded="{{ request()->routeIs('assistance*') ? 'true' : 'false' }}">
+                            <div class="sidebar-icon-wrapper me-3">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <span>Assistances</span>
+                            @if(\App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count() > 0)
+                                <span class="position-absolute end-0 me-3 badge rounded-pill bg-danger">{{ \App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count() }}</span>
+                            @endif
+                            <i class="fas fa-chevron-down ms-auto transition-transform"></i>
+                        </a>
+                        <div class="collapse {{ request()->routeIs('assistance*') ? 'show' : '' }}" id="mobileAssistanceSubMenu">
+                            <ul class="nav flex-column ms-4 mt-2 submenu-items">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.messages') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}">
+                                        <i class="fas fa-envelope me-2 submenu-icon"></i>
+                                        Messages
+                                        @php
+                                            $unreadMessagesCount = \App\Models\Message::where('statut', 'non_lu')->where('receiver_id', Auth::id())->count();
+                                        @endphp
+                                        @if($unreadMessagesCount > 0)
+                                            <span class="badge bg-danger rounded-pill ms-auto">{{ $unreadMessagesCount }}</span>
+                                        @endif
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
                     <li class="nav-item mt-2">
                         <hr class="dropdown-divider mx-3">

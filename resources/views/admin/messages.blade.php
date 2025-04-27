@@ -5,7 +5,7 @@
         <!-- En-tête avec titre et bouton -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Messagerie</h2>
-            <a href="#" class="btn btn-info text-white d-flex align-items-center">
+            <a href="#" class="btn btn-info text-white d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#newMessageModal">
                 <i class="fas fa-plus-circle me-2"></i>
                 Créer une nouvelle conversation
             </a>
@@ -13,12 +13,17 @@
 
         <!-- Barre de recherche -->
         <div class="search-box mb-4">
-            <div class="input-group">
-                <span class="input-group-text bg-white border-end-0">
-                    <i class="fas fa-search text-muted"></i>
-                </span>
-                <input type="text" class="form-control border-start-0" placeholder="Rechercher une conversation...">
-            </div>
+            <form action="{{ route('admin.messages') }}" method="GET">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input type="text" name="search" class="form-control border-start-0" placeholder="Rechercher un message..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-info text-white">
+                        Rechercher
+                    </button>
+                </div>
+            </form>
         </div>
 
         <!-- Liste des conversations -->
@@ -36,9 +41,16 @@
                             <div class="ms-3 flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h5 class="mb-1 text-dark">{{ $message->nomcomplet_sender }}</h5>
-                                    @if($message->statut === 'non_lu')
-                                        <span class="badge bg-danger rounded-pill">1</span>
-                                    @endif
+                                    @php
+                                        $user = Auth::user();
+                                        $unreadMessagesCount = \App\Models\Message::where('statut', 'non_lu')
+                                            ->where('receiver_id', $user->id)
+                                            ->where('sender_id', $message->sender_id)
+                                            ->count();
+                                    @endphp
+                                    @if($unreadMessagesCount > 0)
+                                    <span class="badge bg-danger rounded-pill">{{ $unreadMessagesCount }}</span>
+                                @endif
                                 </div>
                                 <p class="mb-1 message-preview text-dark">
                                     <strong>Sujet:</strong> {{ $message->sujet }}<br>
@@ -63,6 +75,57 @@
                     <p class="text-muted">Aucun message reçu</p>
                 </div>
             @endforelse
+        </div>
+    </div>
+
+    <!-- Modal pour nouveau message -->
+    <div class="modal fade" id="newMessageModal" tabindex="-1" aria-labelledby="newMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newMessageModalLabel">Nouveau message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newMessageForm" action="{{ route('admin.send.message') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="messageType" id="allUsers" value="all" checked>
+                                <label class="form-check-label" for="allUsers">
+                                    Envoyer à tous les utilisateurs
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="messageType" id="singleUser" value="single">
+                                <label class="form-check-label" for="singleUser">
+                                    Envoyer à un seul utilisateur
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">Email de l'utilisateur</label>
+                            <input type="email" class="form-control" id="userEmail" name="email" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Sujet</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-info text-white">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -129,6 +192,28 @@
 
     <!-- Ajout de Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Script pour gérer l'interaction du formulaire -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const allUsersRadio = document.getElementById('allUsers');
+            const singleUserRadio = document.getElementById('singleUser');
+            const userEmailInput = document.getElementById('userEmail');
+
+            function toggleEmailInput() {
+                userEmailInput.disabled = allUsersRadio.checked;
+                if (allUsersRadio.checked) {
+                    userEmailInput.value = '';
+                }
+            }
+
+            allUsersRadio.addEventListener('change', toggleEmailInput);
+            singleUserRadio.addEventListener('change', toggleEmailInput);
+
+            // Initial state
+            toggleEmailInput();
+        });
+    </script>
 @endsection
 
 
