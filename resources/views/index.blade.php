@@ -108,7 +108,7 @@
 
 @section('content')
 <!-- Banner Section -->
-<section class="banner" style="background-image: url('{{ asset('memoire-app1/images/v2.png') }}');">
+<section class="banner" style="background-image: url('{{ asset('images/v2.png') }}');">
     <div class="banner-overlay"></div>
     <div class="motion-box">
         <div class="motion-line"></div>
