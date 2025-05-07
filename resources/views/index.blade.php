@@ -87,13 +87,6 @@
         box-sizing: border-box;
     }
     
-    /* Style pour la bannière */
-    .banner-bg {
-        background-image: url('{{ asset('images/v2.png') }}');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
 </style>
 
 <!-- Style spécifique pour égaliser les boutons -->

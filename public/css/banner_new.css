@@ -9,6 +9,13 @@
     overflow: hidden;
 }
 
+.banner-bg {
+    background-image: url('../images/V2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .banner-overlay {
     position: absolute;
     top: 0;
