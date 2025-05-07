@@ -4,41 +4,6 @@
 
 <div class="container mt-5">
     <h1 class="mb-4 fw-bold text-primary">Statistiques</h1>
-
-    <div class="row mb-5">
-        <div class="col-md-4 mb-3">
-            <div class="card border-0 shadow-sm rounded-3 hover-shadow transition">
-                <div class="card-header bg-primary text-white text-center py-3 rounded-top">
-                    <h5 class="mb-0 fw-bold">TOTAL GÉNÉRÉ DE CETTE SEMAINE</h5>
-                </div>
-                <div class="card-body text-center py-4">
-                    <h3 class="fw-bold text-primary">{{ number_format($beneficesSemaine, 0, ',', ' ') }} FCFA</h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mb-3">
-            <div class="card border-0 shadow-sm rounded-3 hover-shadow transition">
-                <div class="card-header bg-danger text-white text-center py-3 rounded-top">
-                    <h5 class="mb-0 fw-bold">TOTAL DÉPENSES DE CETTE SEMAINE</h5>
-                </div>
-                <div class="card-body text-center py-4">
-                        <h3 class="fw-bold text-danger">{{ number_format($depenses, 0, ',', ' ') }} FCFA</h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mb-3">
-            <div class="card border-0 shadow-sm rounded-3 hover-shadow transition">
-                <div class="card-header bg-success text-white text-center py-3 rounded-top">
-                    <h5 class="mb-0 fw-bold">CHIFFRE D'AFFAIRE DE CETTE SEMAINE</h5>
-                </div>
-                <div class="card-body text-center py-4">
-                    <h3 class="fw-bold text-success">{{ number_format($chiffre_affaire, 0, ',', ' ') }} FCFA</h3>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <div class="card border-0 shadow-sm rounded-3 mb-4">
         <div class="card-header bg-light py-3 border-bottom">
@@ -196,7 +161,7 @@
                             pointRadius: 4
                         },
                         {
-                            label: 'Bénéfices',
+                            label: 'Entrées',
                             data: data.benefices,
                             backgroundColor: 'rgba(25, 135, 84, 0.1)',
                             borderColor: 'rgba(25, 135, 84, 1)',
@@ -209,7 +174,7 @@
                             pointRadius: 4
                         },
                         {
-                            label: 'Bilan (Bénéfices - Dépenses)',
+                            label: 'Bilan (Entrées - Dépenses)',
                             data: data.bilan,
                             backgroundColor: 'rgba(13, 110, 253, 0.1)',
                             borderColor: 'rgba(13, 110, 253, 1)',

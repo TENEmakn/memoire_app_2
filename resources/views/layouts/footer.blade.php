@@ -22,10 +22,10 @@
                 <div class="d-flex flex-column">
                     <h6 class="text-info fw-bold mb-2" style="font-size: 0.9rem;">Liens Rapides</h6>
                     <div class="d-flex flex-column">
-                        <a href="#" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">Service client</a>
-                        <a href="#" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">À Propos</a>
-                        <a href="#" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">CGU</a>
-                        <a href="#" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">FAQ</a>
+                        <a href="{{ route('contact.show') }}" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">Service client</a>
+                        <a href="{{ route('about') }}" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">À Propos</a>
+                        <a href="{{ route('contrat.location') }}" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">Contrat de location</a>
+                        <a href="{{ route('contrat.vente') }}" class="text-dark text-decoration-none mb-2 footer-link" style="font-size: 0.9rem; transition: all 0.3s ease;">Contrat de vente</a>
                     </div>
                 </div>
             </div>

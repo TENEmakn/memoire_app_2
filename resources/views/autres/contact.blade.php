@@ -1,7 +1,18 @@
 @extends('layouts.app')
 
+@section('styles')
+<style>
+    .contact-hero-bg {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('{{ asset('images/v10.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+@endsection
+
 @section('content')
-<section class="contact-hero py-5 mt-1" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('{{ asset('images/v10.png') }}'); background-size: cover; background-position: center;">
+<section class="contact-hero py-5 mt-1 contact-hero-bg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">

@@ -175,3 +175,16 @@ Route::get('/reset-password/{token}', [App\Http\Controllers\Auth\ResetPasswordCo
 Route::post('/reset-password', [App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])
     ->name('password.update');
 
+// Routes pour les contrats
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/contrat/location', function () {
+    return view('contrats.location');
+})->name('contrat.location');
+
+Route::get('/contrat/vente', function () {
+    return view('contrats.vente');
+})->name('contrat.vente');
+

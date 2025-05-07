@@ -67,18 +67,17 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.benefices') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
                                     <i class="fas fa-chart-line me-2 submenu-icon"></i>
-                                    Bénéfices
+                                    Entrées
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                    <a href="{{ route('admin.depense') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
-                                        <i class="fas fa-money-bill me-2 submenu-icon"></i>
-                                        Dépenses
-                                    </a>
+                                <a href="{{ route('admin.depense') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
+                                    <i class="fas fa-money-bill me-2 submenu-icon"></i>
+                                    Dépenses
+                                </a>
                             </li>
 
-                            
                             <li class="nav-item">
                                 <a href="{{ route('admin.stats') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
                                     <i class="fas fa-chart-bar me-2 submenu-icon"></i>
@@ -185,6 +184,7 @@
                 </li>
 
                 <!-- Assistance -->
+                @if(Auth::user()->status == 'admin')
                 <li class="nav-item">
                     <a href="#" class="nav-link d-flex align-items-center px-4 py-3 text-dark hover-bg-light hover-text-primary position-relative {{ request()->routeIs('assistance*') ? 'active' : '' }}" data-bs-toggle="collapse" data-bs-target="#assistanceSubMenu" aria-expanded="{{ request()->routeIs('assistance*') ? 'true' : 'false' }}">
                         <div class="sidebar-icon-wrapper me-3">
@@ -218,7 +218,7 @@
                         </ul>
                     </div>
                 </li>
-
+                @endif
                 <li class="nav-item mt-2">
                     <hr class="dropdown-divider mx-3">
                 </li>
@@ -286,17 +286,11 @@
                                         Vue générale
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.stats') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
-                                        <i class="fas fa-chart-bar me-2 submenu-icon"></i>
-                                        Statistiques
-                                    </a>
-                                </li>
 
                                 <li class="nav-item">
                                     <a href="{{ route('admin.benefices') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
                                         <i class="fas fa-chart-line me-2 submenu-icon"></i>
-                                        Bénéfices
+                                        Entrées
                                     </a>
                                 </li>
 
@@ -304,6 +298,13 @@
                                     <a href="{{ route('admin.depense') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
                                         <i class="fas fa-money-bill me-2 submenu-icon"></i>
                                         Dépenses
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.stats') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
+                                        <i class="fas fa-chart-bar me-2 submenu-icon"></i>
+                                        Statistiques
                                     </a>
                                 </li>
                             </ul>
@@ -345,12 +346,14 @@
                                         @endif
                                     </a>
                                 </li>
+                                @if(Auth::user()->status == 'admin')
                                 <li class="nav-item">
                                     <a href="{{ route('admin.gestionnaire') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('users.managers') ? 'active' : '' }}">
                                         <i class="fas fa-user-shield me-2 submenu-icon"></i>
                                         Gestionnaires
                                     </a>
                                 </li>
+                                @endif
                                 <li class="nav-item">
                                     <a href="{{ route('admin.chauffeur') }}" class="nav-link text-dark py-2 ps-4 d-flex align-items-center {{ request()->routeIs('users.drivers') ? 'active' : '' }}">
                                         <i class="fas fa-user-astronaut me-2 submenu-icon"></i>
@@ -404,6 +407,7 @@
                     </li>
 
                     <!-- Assistance -->
+                    @if(Auth::user()->status == 'admin')
                     <li class="nav-item">
                         <a href="#" class="nav-link d-flex align-items-center px-4 py-3 text-dark hover-bg-light hover-text-primary position-relative {{ request()->routeIs('assistance*') ? 'active' : '' }}" data-bs-toggle="collapse" data-bs-target="#mobileAssistanceSubMenu" aria-expanded="{{ request()->routeIs('assistance*') ? 'true' : 'false' }}">
                             <div class="sidebar-icon-wrapper me-3">
@@ -432,7 +436,7 @@
                             </ul>
                         </div>
                     </li>
-
+                    @endif
                     <li class="nav-item mt-2">
                         <hr class="dropdown-divider mx-3">
                     </li>

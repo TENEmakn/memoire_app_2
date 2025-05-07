@@ -33,7 +33,7 @@
                     <h5 class="mb-0 fw-bold">CHIFFRE D'AFFAIRE CETTE SEMAINE</h5>
                 </div>
                 <div class="card-body text-center py-4">
-                    <h3 class="fw-bold text-success">{{ number_format($chiffre_affaire, 0, ',', ' ') }} FCFA</h3>
+                    <h3 class="fw-bold text-success">{{ number_format($beneficesSemaine + $depenses, 0, ',', ' ') }} FCFA</h3>
                 </div>
             </div>
         </div>

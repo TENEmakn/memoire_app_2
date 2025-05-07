@@ -515,6 +515,9 @@ class LocationRequestController extends Controller
     public function reject($id)
     {
         $reservation = LocationRequest::findOrFail($id);
+
+        // Supprimer l'enregistrement correspondant dans la table des bénéfices
+        Benefice::where('location_request_id', $id)->delete();
         
         if ($reservation->statut !== 'en_attente') {
             return redirect()->back()->with('error', 'Seules les réservations en attente peuvent être rejetées.');
@@ -522,6 +525,10 @@ class LocationRequestController extends Controller
         
         $reservation->statut = 'refusee';
         $reservation->save();
+
+        // Supprimer l'enregistrement correspondant dans la table des bénéfices
+        Benefice::where('location_request_id', $id)->delete();
+        
         
         // Rendre le véhicule à nouveau disponible
         $vehicule = $reservation->vehicule;

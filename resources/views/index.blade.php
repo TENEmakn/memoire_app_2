@@ -86,6 +86,14 @@
         height: 44px;
         box-sizing: border-box;
     }
+    
+    /* Style pour la bannière */
+    .banner-bg {
+        background-image: url('{{ asset('images/v2.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 </style>
 
 <!-- Style spécifique pour égaliser les boutons -->
@@ -108,7 +116,7 @@
 
 @section('content')
 <!-- Banner Section -->
-<section class="banner" style="background-image: url('{{ asset('images/v2.png') }}');">
+<section class="banner banner-bg">
     <div class="banner-overlay"></div>
     <div class="motion-box">
         <div class="motion-line"></div>
@@ -302,15 +310,9 @@
                                     </div>
                                 </div>
                                 @auth
-                                    @if(Auth::user()->status != 'admin' && (!Auth::user()->image_piece_recto || !Auth::user()->image_piece_verso || !Auth::user()->piece_verifie))
-                                        <a href="{{ route('auth.profil', ['message' => 'docs_required']) }}" class="btn-louer">
-                                            <i class="fas fa-exclamation-triangle"></i> Compléter profil
-                                        </a>
-                                    @else
                                         <a href="{{ $vehicule->disponibilite ? route('location.create', $vehicule->id) : '#' }}" class="btn-louer {{ !$vehicule->disponibilite ? 'disabled' : '' }}">
                                             <i class="fas fa-key"></i> {{ $vehicule->disponibilite ? 'Louer' : 'Indisponible' }}
                                         </a>
-                                    @endif
                                     @else
                                         <a href="{{ route('auth.login') }}" class="btn-louer">
                                             <i class="fas fa-sign-in-alt"></i> Se connecter
@@ -399,11 +401,7 @@
                                 @guest
                                     <a href="{{ route('auth.login') }}" class="btn-acheter"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
                                 @else
-                                @if(!Auth::user()->image_piece_recto || !Auth::user()->image_piece_verso || !Auth::user()->piece_verifie)
-                                        <a href="{{ route('auth.profil', ['message' => 'docs_required']) }}" class="btn-acheter"><i class="fas fa-exclamation-triangle"></i> Compléter profil</a>
-                                    @else
-                                        <a href="{{ route('vente.show', $vehicule->id) }}" class="btn-acheter"><i class="fas fa-shopping-cart"></i> Acheter</a>
-                                    @endif
+                                    <a href="{{ route('vente.show', $vehicule->id) }}" class="btn-acheter"><i class="fas fa-shopping-cart"></i> Acheter</a>
                                 @endguest
                             </div>
                         </div>

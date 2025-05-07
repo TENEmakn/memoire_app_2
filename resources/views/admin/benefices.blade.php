@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container mt-5">
-    <h1 class="mb-4 fw-bold text-primary">Bénéfices</h1>
+    <h1 class="mb-4 fw-bold text-primary">Entrées</h1>
 
     @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,7 +16,7 @@
         <div class="col-md-4 mb-3">
             <div class="card border-0 shadow-sm rounded-3 hover-shadow transition">
                 <div class="card-header bg-primary text-white text-center py-3 rounded-top">
-                    <h5 class="mb-0 fw-bold">BÉNÉFICE DE CETTE SEMAINE</h5>
+                    <h5 class="mb-0 fw-bold">ENTREE DE CETTE SEMAINE</h5>
                 </div>
                 <div class="card-body text-center py-4">
                     <h3 class="fw-bold text-primary">{{ number_format($beneficeThisWeek, 0, ',', ' ') }} FCFA</h3>
@@ -27,7 +27,7 @@
         <div class="col-md-4 mb-3">
             <div class="card border-0 shadow-sm rounded-3 hover-shadow transition">
                 <div class="card-header bg-success text-white text-center py-3 rounded-top">
-                    <h5 class="mb-0 fw-bold">BÉNÉFICE DE CE MOIS</h5>
+                    <h5 class="mb-0 fw-bold">ENTREE DE CE MOIS</h5>
                 </div>
                 <div class="card-body text-center py-4">
                     <h3 class="fw-bold text-success">{{ number_format($beneficeThisMonth, 0, ',', ' ') }} FCFA</h3>
@@ -38,7 +38,7 @@
         <div class="col-md-4 mb-3">
             <div class="card border-0 shadow-sm rounded-3 hover-shadow transition">
                 <div class="card-header bg-info text-white text-center py-3 rounded-top">
-                    <h5 class="mb-0 fw-bold">BÉNÉFICE DE CETTE ANNÉE</h5>
+                    <h5 class="mb-0 fw-bold">ENTREE DE CETTE ANNÉE</h5>
                 </div>
                 <div class="card-body text-center py-4">
                     <h3 class="fw-bold text-info">{{ number_format($beneficeThisYear, 0, ',', ' ') }} FCFA</h3>
@@ -123,7 +123,7 @@
         <div class="col-12">
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-header bg-light py-3 border-bottom">
-                    <h5 class="text-center mb-0 fw-bold text-dark">Évolution des bénéfices</h5>
+                    <h5 class="text-center mb-0 fw-bold text-dark">Évolution des entrées</h5>
                 </div>
                 <div class="card-body p-4">
                     <div class="chart-container" style="position: relative; height:300px;">
@@ -170,7 +170,7 @@
         <div class="col-12">
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-header bg-light py-3 border-bottom d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
-                    <h5 class="mb-0 fw-bold text-dark">Liste des bénéfices</h5>
+                    <h5 class="mb-0 fw-bold text-dark">Liste des entrées</h5>
                     <div class="w-100">
                         <form action="{{ route('admin.benefices') }}" method="GET" class="d-flex flex-column flex-md-row gap-2 w-100">
                             
@@ -328,7 +328,7 @@
                 labels: [],
                 datasets: [
                     {
-                        label: 'Bénéfices Vente',
+                        label: 'Entrées Vente',
                         data: [],
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
@@ -337,7 +337,7 @@
                         fill: false
                     },
                     {
-                        label: 'Bénéfices Location',
+                        label: 'Entrées Location',
                         data: [],
                         backgroundColor: 'rgba(40, 167, 69, 0.2)',
                         borderColor: 'rgba(40, 167, 69, 1)',
@@ -346,7 +346,7 @@
                         fill: false
                     },
                     {
-                        label: 'Bénéfices Totaux',
+                        label: 'Entrées Totales',
                         data: [],
                         backgroundColor: 'rgba(0, 123, 255, 0.2)',
                         borderColor: 'rgba(0, 123, 255, 1)',
