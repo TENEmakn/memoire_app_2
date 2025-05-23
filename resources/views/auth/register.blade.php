@@ -6,7 +6,9 @@
   <title>Inscription - CGV MOTORS</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+  <meta name="theme-color" content="#00cfff">
 </head>
 <body>
 
@@ -14,19 +16,24 @@
     <div class="d-flex flex-column align-items-center">
       <div class="loader"></div> 
       <div class="loading-text">Inscription en cours...</div>
+      <div class="loading-subtext mt-2">Veuillez patienter pendant que nous créons votre compte...</div>
     </div>
   </div>
 
   <div class="card">
-    <a href="{{ route('index') }}" class="close-button">×</a>
+    <a href="{{ route('index') }}" class="close-button" title="Retour à l'accueil">×</a>
     <div class="brand-title">
       <div class="top">CGV</div>
       <div class="bottom">MOTORS</div>
     </div>
-    <h5 class="text-center mb-3">Créez votre compte</h5>
+    <h5 class="text-center mb-3"><i class="bi bi-person-plus-fill me-2"></i>Créez votre compte</h5>
 
     @if ($errors->any())
-    <div class="alert alert-danger py-1 mb-2">
+    <div class="alert alert-danger py-2 mb-3">
+        <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <strong>Veuillez corriger les erreurs suivantes:</strong>
+        </div>
         <ul class="mb-0 ps-3">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -39,10 +46,10 @@
       @csrf
       
       <div class="form-steps mb-3">
-        <div class="step active" id="step1-indicator">1. Identité</div>
-        <div class="step" id="step2-indicator">2. Contact</div>
-        <div class="step" id="step3-indicator">3. Domicile</div>
-        <div class="step" id="step4-indicator">4. Sécurité</div>
+        <div class="step active" id="step1-indicator"><i class="bi bi-person-badge me-1"></i>1. Identité</div>
+        <div class="step" id="step2-indicator"><i class="bi bi-envelope me-1"></i>2. Contact</div>
+        <div class="step" id="step3-indicator"><i class="bi bi-house me-1"></i>3. Domicile</div>
+        <div class="step" id="step4-indicator"><i class="bi bi-shield-lock me-1"></i>4. Sécurité</div>
       </div>
       
       <div class="step-content" id="step1">
@@ -74,7 +81,7 @@
         </div>
         
         <div class="d-flex justify-content-end mt-3">
-          <button type="button" class="btn btn-primary btn-sm next-step" data-next="step2">Suivant <i class="bi bi-arrow-right"></i></button>
+          <button type="button" class="btn btn-primary next-step" data-next="step2">Suivant <i class="bi bi-arrow-right ms-1"></i></button>
         </div>
       </div>
       
@@ -98,8 +105,8 @@
         </div>
         
         <div class="d-flex justify-content-between mt-3">
-          <button type="button" class="btn btn-outline-secondary btn-sm prev-step" data-prev="step1"><i class="bi bi-arrow-left"></i> Précédent</button>
-          <button type="button" class="btn btn-primary btn-sm next-step" data-next="step3">Suivant <i class="bi bi-arrow-right"></i></button>
+          <button type="button" class="btn btn-outline-secondary prev-step" data-prev="step1"><i class="bi bi-arrow-left me-1"></i> Précédent</button>
+          <button type="button" class="btn btn-primary next-step" data-next="step3">Suivant <i class="bi bi-arrow-right ms-1"></i></button>
         </div>
       </div>
       
@@ -123,8 +130,8 @@
         </div>
         
         <div class="d-flex justify-content-between mt-3">
-          <button type="button" class="btn btn-outline-secondary btn-sm prev-step" data-prev="step2"><i class="bi bi-arrow-left"></i> Précédent</button>
-          <button type="button" class="btn btn-primary btn-sm next-step" data-next="step4">Suivant <i class="bi bi-arrow-right"></i></button>
+          <button type="button" class="btn btn-outline-secondary prev-step" data-prev="step2"><i class="bi bi-arrow-left me-1"></i> Précédent</button>
+          <button type="button" class="btn btn-primary next-step" data-next="step4">Suivant <i class="bi bi-arrow-right ms-1"></i></button>
         </div>
       </div>
       
@@ -163,15 +170,15 @@
         </div>
         
         <div class="d-flex justify-content-between mt-3">
-          <button type="button" class="btn btn-outline-secondary btn-sm prev-step" data-prev="step3"><i class="bi bi-arrow-left"></i> Précédent</button>
-          <button type="submit" class="btn btn-primary">S'inscrire <i class="bi bi-check2-circle"></i></button>
+          <button type="button" class="btn btn-outline-secondary prev-step" data-prev="step3"><i class="bi bi-arrow-left me-1"></i> Précédent</button>
+          <button type="submit" class="btn btn-primary">S'inscrire <i class="bi bi-check2-circle ms-1"></i></button>
         </div>
       </div>
     </form>
     
-    <div class="small-text mt-3">
-      Vous avez déjà un compte ?
-      <a href="{{ route('auth.login') }}">Connectez-vous</a>
+    <div class="small-text mt-4">
+      <i class="bi bi-question-circle me-1"></i> Vous avez déjà un compte ?
+      <a href="{{ route('auth.login') }}" class="ms-1">Connectez-vous ici</a>
     </div>
   </div>
 

@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
-<!-- Ajout de Font Awesome pour les icônes -->
 @section('styles')
+<!-- Styles principaux -->
 <link rel="stylesheet" href="{{ asset('css/banner_new.css') }}">
 <link rel="stylesheet" href="{{ asset('css/advantages.css') }}">
 <link rel="stylesheet" href="{{ asset('css/brands.css') }}">
 <link rel="stylesheet" href="{{ asset('css/badges.css') }}">
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Font Awesome pour les icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Animation on Scroll library -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <style>
     /* Style pour le loader dans les selects */
     .select-wrapper {
@@ -52,6 +55,7 @@
         display: flex;
         gap: 10px;
         margin-top: 10px;
+        align-items: stretch;
     }
     
     .btn-reset-search {
@@ -67,7 +71,7 @@
         font-size: 0.9em;
         text-decoration: none;
         transition: all 0.3s ease;
-        height: 100%;
+        height: 44px;
     }
     
     .btn-reset-search:hover {
@@ -84,25 +88,83 @@
     .search-actions .btn-search,
     .search-actions .btn-reset-search {
         height: 44px;
-        box-sizing: border-box;
-    }
-    
-</style>
-
-<!-- Style spécifique pour égaliser les boutons -->
-<style>
-    .search-actions {
-        align-items: stretch;
-    }
-    
-    .search-actions .btn-search,
-    .search-actions .btn-reset-search {
-        height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         padding: 0 15px;
         font-size: 16px;
+        box-sizing: border-box;
+    }
+    
+    /* Style pour les filtres rapides */
+    .quick-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    
+    .quick-filter-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 15px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        color: #495057;
+        font-weight: 500;
+        font-size: 0.9em;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .quick-filter-btn:hover {
+        background-color: #e9ecef;
+        border-color: #ced4da;
+    }
+    
+    .quick-filter-btn i {
+        margin-right: 8px;
+        font-size: 1.1em;
+    }
+    
+    .quick-filter-btn[data-type="location"] {
+        background-color: #e8f4ff;
+        border-color: #b8daff;
+        color: #0056b3;
+    }
+    
+    .quick-filter-btn[data-type="vente"] {
+        background-color: #e8fff0;
+        border-color: #b8ffd8;
+        color: #00b356;
+    }
+    
+    /* Style pour les dividers de section */
+    .section-divider {
+        height: 3px;
+        width: 60px;
+        background: linear-gradient(90deg, #007bff, #00c6ff);
+        margin: 15px auto 30px;
+        border-radius: 2px;
+    }
+    
+    .section-divider.light {
+        background: linear-gradient(90deg, #ffffff, rgba(255,255,255,0.7));
+    }
+    
+    /* Améliorations pour les cartes de véhicules */
+    .vehicle-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .vehicle-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 </style>
 @endsection
@@ -117,21 +179,21 @@
         <div class="motion-line"></div>
     </div>
     <div class="floating-elements">
-        <div class="floating-icon" style="top: 15%; left: 10%;">
+        <div class="floating-icon" style="top: 15%; left: 10%;" data-aos="fade-down" data-aos-delay="100">
             <i class="fas fa-car"></i>
         </div>
-        <div class="floating-icon" style="top: 25%; right: 15%;">
+        <div class="floating-icon" style="top: 25%; right: 15%;" data-aos="fade-down" data-aos-delay="200">
             <i class="fas fa-key"></i>
         </div>
-        <div class="floating-icon" style="bottom: 30%; left: 18%;">
+        <div class="floating-icon" style="bottom: 30%; left: 18%;" data-aos="fade-up" data-aos-delay="300">
             <i class="fas fa-map-marker-alt"></i>
         </div>
-        <div class="floating-icon" style="bottom: 20%; right: 10%;">
+        <div class="floating-icon" style="bottom: 20%; right: 10%;" data-aos="fade-up" data-aos-delay="400">
             <i class="fas fa-tag"></i>
         </div>
     </div>
     <div class="container">
-        <div class="trust-badges">
+        <div class="trust-badges" data-aos="fade-down" data-aos-delay="100">
             <div class="trust-badge">
                 <i class="fas fa-shield-alt"></i>
                 <span>100% Sécurisé</span>
@@ -147,38 +209,38 @@
         </div>
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <div class="banner-content">
+                <div class="banner-content" data-aos="fade-right" data-aos-delay="200">
                     <div class="banner-badge">
                         <i class="fas fa-award"></i> Service Premium
                     </div>
-                    <h1 class="banner-title">Trouvez un <span class="banner-accent">véhicule</span> idéal pour vos Déplacements</h1>
-                    <p class="banner-subtitle">Des véhicules vérifiés et approuvés par nos experts</p>
+                    <h1 class="banner-title">Trouvez le <span class="banner-accent">véhicule</span> idéal pour vos déplacements</h1>
+                    <p class="banner-subtitle">Des véhicules soigneusement sélectionnés et approuvés par nos experts</p>
                     <div class="banner-features">
-                        <div class="feature-item">
+                        <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
                             <i class="fas fa-check-circle"></i>
                             <span>Large sélection de véhicules</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
                             <i class="fas fa-check-circle"></i>
                             <span>Prix compétitifs garantis</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item" data-aos="fade-up" data-aos-delay="500">
                             <i class="fas fa-check-circle"></i>
                             <span>Service client 24/7</span>
                         </div>
                     </div>
-                    <a href="#" class="banner-cta">Voir nos véhicules <i class="fas fa-arrow-right"></i></a>
+                    <a href="#vehicules-location" class="banner-cta">Voir nos véhicules <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="banner-search-container">
+                <div class="banner-search-container" data-aos="fade-left" data-aos-delay="200">
                     <div class="quick-filters">
                         <span class="filter-label">Recherche rapide:</span>
-                        <button class="quick-filter-btn" data-type="car"><i class="fas fa-car"></i>Location</button>
-                        <button class="quick-filter-btn" data-type="moto"><i class="fas fa-car"></i>Vente</button>
-                        <a href="{{ route('index') }}" class="btn-reset-search" style="height: 44px; padding: 0 20px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-sync-alt"></i> Réinitialiser</a>
+                        <button class="quick-filter-btn" data-type="location"><i class="fas fa-car"></i>Location</button>
+                        <button class="quick-filter-btn" data-type="vente"><i class="fas fa-tags"></i>Vente</button>
+                        <a href="{{ route('index') }}" class="btn-reset-search"><i class="fas fa-sync-alt"></i> Réinitialiser</a>
                     </div>
-                    <h3 class="search-form-title"><i class="fas fa-search"></i> Trouver votre véhicule</h3>
+                    <h3 class="search-form-title"><i class="fas fa-search"></i> Trouvez votre véhicule idéal</h3>
                     <form action="{{ route('index') }}" method="GET" id="search-form">
                         <div class="search-grid">
                             <div class="form-group">
@@ -267,14 +329,15 @@
 <!-- Section des voitures en location -->
 <section id="vehicules-location" class="vehicles-section">
     <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <h2 class="section-title">Nos Véhicules en Location</h2>
             <p class="section-subtitle">Découvrez notre sélection de véhicules disponibles pour la location</p>
+            <div class="section-divider"></div>
         </div>
         <div class="vehicles-grid">
             @if($vehiculesLocation->count() > 0)
                 @foreach($vehiculesLocation as $vehicule)
-                <div class="vehicle-card" data-disponible="{{ $vehicule->disponibilite ? 'true' : 'false' }}">
+                <div class="vehicle-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" data-disponible="{{ $vehicule->disponibilite ? 'true' : 'false' }}">
                         <div class="vehicle-image">
                             <img src="{{ asset('storage/' . $vehicule->image_principale) }}" alt="{{ $vehicule->marque }} {{ $vehicule->serie }}">
                             <span class="{{ $vehicule->disponibilite ? 'location-badge' : 'mission-badge' }}">{{ $vehicule->disponibilite ? 'Location' : 'En Mission' }}</span>
@@ -363,14 +426,15 @@
 <!-- Section des voitures en vente -->
 <section id="vehicules-vente" class="vehicles-section">
     <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <h2 class="section-title">Nos Véhicules en Vente</h2>
             <p class="section-subtitle">Découvrez notre sélection de véhicules disponibles à l'achat</p>
+            <div class="section-divider"></div>
         </div>
         <div class="vehicles-grid">
             @if($vehiculesVente->count() > 0)
                 @foreach($vehiculesVente as $vehicule)
-                    <div class="vehicle-card">
+                    <div class="vehicle-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                         <div class="vehicle-image">
                             <img src="{{ asset('storage/' . $vehicule->image_principale) }}" alt="{{ $vehicule->marque }} {{ $vehicule->serie }}">
                             <span class="vente-badge">Vente</span>
@@ -447,13 +511,14 @@
 <!-- Section des avantages -->
 <section class="advantages-section">
     <div class="container">
-        <div class="section-header text-center">
+        <div class="section-header text-center" data-aos="fade-up">
             <h2 class="section-title text-white">Nos Avantages</h2>
             <p class="section-subtitle">Découvrez pourquoi nous sommes votre meilleur choix</p>
+            <div class="section-divider light"></div>
         </div>
         <div class="advantages-grid">
             <!-- Qualité et expérience -->
-            <div class="advantage-card">
+            <div class="advantage-card" data-aos="fade-right" data-aos-delay="100">
                 <div class="advantage-icon-wrapper">
                     <div class="advantage-icon">
                         <i class="fas fa-star"></i>
@@ -472,7 +537,7 @@
             </div>
 
             <!-- Économies -->
-            <div class="advantage-card featured">
+            <div class="advantage-card featured" data-aos="fade-up" data-aos-delay="200">
                 <div class="advantage-icon-wrapper">
                     <div class="advantage-icon">
                         <i class="fas fa-piggy-bank"></i>
@@ -491,7 +556,7 @@
             </div>
 
             <!-- Boss -->
-            <div class="advantage-card">
+            <div class="advantage-card" data-aos="fade-left" data-aos-delay="300">
                 <div class="advantage-icon-wrapper">
                     <div class="advantage-icon">
                         <i class="fas fa-crown"></i>
@@ -516,9 +581,10 @@
 <!-- Section des marques -->
 <section class="brands-section">
     <div class="container">
-        <div class="section-header text-center">
-            <h2 class="section-title">NOS MARQUES</h2>
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2 class="section-title">Nos Marques</h2>
             <p class="section-subtitle">Découvrez notre sélection de marques prestigieuses</p>
+            <div class="section-divider"></div>
         </div>
         <div class="brands-slider">
             <div class="brands-track">
@@ -611,6 +677,9 @@
 <!-- Script pour l'animation de la bannière -->
 <script src="{{ asset('js/banner.js') }}"></script>
 
+<!-- Animation on Scroll library -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <!-- Script pour les fonctionnalités du formulaire de recherche dynamique -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -665,6 +734,22 @@
             showAllLoaders();
             disableAllSelects();
             updateOptions('marque', this.value); 
+        });
+        
+        // Associer les event listeners aux boutons de filtres rapides
+        document.querySelectorAll('.quick-filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const type = this.getAttribute('data-type');
+                transactionSelect.value = type;
+                
+                // Déclencher l'événement change pour mettre à jour les autres filtres
+                const event = new Event('change');
+                transactionSelect.dispatchEvent(event);
+                
+                // Scroll vers la section appropriée
+                const targetSection = type === 'location' ? 'vehicules-location' : 'vehicules-vente';
+                document.getElementById(targetSection).scrollIntoView({ behavior: 'smooth' });
+            });
         });
         
         typeSelect.addEventListener('change', function() { 
@@ -871,5 +956,16 @@
 
 <!-- Script pour le slider des marques -->
 <script src="{{ asset('js/index.js') }}"></script>
+
+<!-- Initialisation de AOS (Animation on Scroll) -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    });
+</script>
 @endsection
 @endsection
