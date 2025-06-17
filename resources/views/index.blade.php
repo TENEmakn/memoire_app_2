@@ -26,6 +26,14 @@
         display: none;
     }
     
+    .loader-container {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
+    }
+    
     .select-loader {
         width: 15px;
         height: 15px;
@@ -165,6 +173,15 @@
     .vehicle-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    /* Style pour les témoignages */
+    .testimonial-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 </style>
 @endsection
@@ -672,6 +689,79 @@
     </div>
 </section>
 <!-- Fin section des marques -->
+
+<!-- section des Temoignages -->
+<section class="testimonials-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2 class="section-title">Ce que nos clients disent</h2>
+            <p class="section-subtitle">Découvrez les témoignages de nos clients satisfaits</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row testimonials-grid">
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-item card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left text-primary"></i>
+                            <p class="card-text">Le service est exceptionnel ! La voiture était parfaite et le processus de location très simple.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <div class="testimonial-author d-flex align-items-center">
+                            <img src="{{ asset('images/client1.jpg') }}" alt="Client 1" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Jean Dupont</h5>
+                                <span class="text-muted">Abidjan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-item card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left text-primary"></i>
+                            <p class="card-text">J'ai acheté ma voiture ici et je suis très satisfait. Prix compétitifs et service professionnel.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <div class="testimonial-author d-flex align-items-center">
+                            <img src="{{ asset('images/client2.jpg') }}" alt="Client 2" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Marie Koné</h5>
+                                <span class="text-muted">Yamoussoukro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-item card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left text-primary"></i>
+                            <p class="card-text">Le personnel est très accueillant et professionnel. Je recommande vivement ce service de location de voiture.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <div class="testimonial-author d-flex align-items-center">
+                            <img src="{{ asset('images/client3.jpg') }}" alt="Client 3" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Paul Martin</h5>
+                                <span class="text-muted">Bouaké</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more testimonials as needed -->
+        </div>
+    </div>
+</section>
+<!-- Fin section des Temoignages -->
+
 
 @section('scripts')
 <!-- Script pour l'animation de la bannière -->
