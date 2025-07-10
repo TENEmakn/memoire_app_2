@@ -173,7 +173,7 @@ Route::post('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordControl
 Route::get('/reset-password/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])
     ->name('password.reset');
 Route::post('/reset-password', [App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])
-    ->name('password.update');
+    ->name('password.update.profil');
 
 // Routes pour les contrats
 Route::get('/about', function () {
