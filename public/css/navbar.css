@@ -19,8 +19,7 @@
 
 .logo {
     display: flex;
-    flex-direction: column;
-    line-height: 0.9;
+    align-items: center;
     transition: transform 0.3s ease; 
 }
 
@@ -28,19 +27,28 @@
     transform: scale(1.05);
 }
 
-.cgv {
-    color: #00b8d4;
-    font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: 0.5px;
+.logo-img {
+    height: 40px;
+    width: auto;
 }
 
-.motors {
-    color: #00b8d4;
-    font-weight: bold;
-    font-size: 1rem;
-    letter-spacing: 1px;
+.logo-img-mobile {
+    height: 30px;
+    width: auto;
+    margin-bottom: 5px;
 }
+
+.logo-img-sidebar {
+    height: 35px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.footer-logo {
+    height: 45px;
+    width: auto;
+}
+
 
 .navbar .container {
     position: relative;

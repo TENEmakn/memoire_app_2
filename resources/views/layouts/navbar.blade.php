@@ -2,8 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('index') }}">
             <div class="logo">
-                <span class="cgv">CGV</span>
-                <span class="motors">MOTORS</span>
+                <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="logo-img">
             </div>
             @Auth
             @if(Auth::user()->status == 'admin' || Auth::user()->status == 'gestionnaire')
@@ -57,7 +56,7 @@
         </div>
         
         <div class="collapse navbar-collapse offcanvas-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
+            <ul class="navbar-nav mx-5">
                 <li class="nav-item">
                     <a class="nav-link py-2 my-1" href="{{ route('index') }}#">Accueil</a>
                 </li>

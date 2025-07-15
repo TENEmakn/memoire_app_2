@@ -76,7 +76,7 @@
                                     <br><i class="fas fa-envelope"></i> {{ $rdv->email }}
                                 @endif
                             </td>
-                            <td><a href="https://maps.app.goo.gl/xxnVRVPJMAs4a3ag6" target="_blank" rel="noopener noreferrer">Trajet vers CGV MOTORS</a></td>
+                            <td><a href="https://maps.app.goo.gl/xxnVRVPJMAs4a3ag6" target="_blank" rel="noopener noreferrer">Trajet vers CGV Motors</a></td>
                             <td>{{ number_format($rdv->prix_vehicule, 0, ',', ' ') }} FCFA</td>
                             <td>
                                 @switch($rdv->statut)

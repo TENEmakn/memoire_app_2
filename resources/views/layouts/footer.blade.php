@@ -15,7 +15,9 @@
         <div class="row align-items-start">
             <!-- Logo and Social Media -->
             <div class="col-md-3 mb-4 mb-md-0">
-                <h5 class="text-info fw-bold mb-3" style="font-size: 1.5rem;">CGV MOTORS</h5>
+                <div class="mb-3">
+                    <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="footer-logo">
+                </div>
                 <p class="text-muted mb-3" style="font-size: 0.9rem;">Votre partenaire de confiance pour l'achat et la location de véhicules de qualité.</p>
                 <div class="d-flex gap-2 flex-wrap">
                     <a href="#" class="btn btn-dark rounded-circle p-2 social-icon" title="Facebook">
@@ -89,7 +91,10 @@
     </div>
     <div class="chat-bot-box" id="chatBotBox">
         <div class="chat-bot-header">
-            <h6 class="m-0">CGV Motors Assistant</h6>
+            <div class="d-flex align-items-center">
+                <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="chatbot-logo me-2">
+                <h6 class="m-0">Assistant</h6>
+            </div>
             <button class="chat-close-btn" id="chatCloseBtn">
                 <i class="fas fa-times"></i>
             </button>
@@ -373,7 +378,7 @@
                 response = 'Nous sommes ouverts du lundi au vendredi de 8h à 18h et le samedi de 9h à 16h.';
             }
             else if (lowerMessage.includes('contact') || lowerMessage.includes('téléphone') || lowerMessage.includes('appeler')) {
-                response = 'Vous pouvez nous contacter au 01 23 45 67 89 ou par email à contact@cgvmotors.com';
+                response = 'Vous pouvez nous contacter au 01 23 45 67 89 ou par email à contact@cgvmotors.fr';
             }
             else if (lowerMessage.includes('adresse') || lowerMessage.includes('où') || lowerMessage.includes('localisation')) {
                 response = 'Nous sommes situés au 123 Avenue des Véhicules, 75000 Paris.';

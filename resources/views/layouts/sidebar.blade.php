@@ -3,7 +3,7 @@
     <!-- Mobile Navbar -->
     <div class="mobile-navbar d-lg-none d-flex justify-content-between align-items-center bg-white p-3 shadow-sm">
         <div class="mobile-logo">
-            <h1 class="h5 fw-bold text-primary mb-0">CGV MOTORS</h1>
+            <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="logo-img-mobile" style="max-height: 40px;">
             <a href="{{ route('index') }}" class="text-decoration-none text-dark">
                 <i class="fas fa-home"></i> Home
             </a>
@@ -37,7 +37,7 @@
     <div class="sidebar bg-white position-fixed h-100 shadow-sm d-none d-lg-block">
         <!-- Logo -->
         <div class="p-4 text-center border-bottom logo-container">
-            <h1 class="h4 fw-bold mb-0 brand-text">CGV MOTORS</h1>
+            <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="logo-img-sidebar" style="max-height: 40px;">
             <a href="{{ route('index') }}" class="text-decoration-none text-dark">
                 <i class="fas fa-home"></i> Home
             </a>
@@ -263,7 +263,7 @@
     <!-- Offcanvas Sidebar for Mobile -->
     <div class="offcanvas offcanvas-start modern-offcanvas" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
         <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title fw-bold brand-text" id="sidebarOffcanvasLabel">CGV MOTORS</h5>
+            <h5 class="offcanvas-title fw-bold brand-text" id="sidebarOffcanvasLabel">CGV Motors</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body p-0">
@@ -779,4 +779,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-});</script> 
+});</script>

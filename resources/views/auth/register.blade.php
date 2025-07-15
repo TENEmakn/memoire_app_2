@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Inscription - CGV MOTORS</title>
+  <title>Inscription - CGV Motors</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,8 +23,7 @@
   <div class="card">
     <a href="{{ route('index') }}" class="close-button" title="Retour à l'accueil">×</a>
     <div class="brand-title">
-      <div class="top">CGV</div>
-      <div class="bottom">MOTORS</div>
+      <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="auth-logo">
     </div>
     <h5 class="text-center mb-3"><i class="bi bi-person-plus-fill me-2"></i>Créez votre compte</h5>
 

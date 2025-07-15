@@ -58,8 +58,6 @@ body {
 /* Brand title styles */
 .brand-title {
   text-align: center;
-  font-weight: bold;
-  color: #00cfff;
   margin-bottom: 15px;
   transition: all 0.3s ease;
   position: relative;
@@ -68,18 +66,10 @@ body {
   transform: translateX(-50%);
 }
 
-.brand-title .top {
-  font-size: 28px;
+.auth-logo {
+  height: 60px;
+  width: auto;
   transition: all 0.3s ease;
-  text-shadow: 2px 2px 4px rgba(0, 207, 255, 0.2);
-  letter-spacing: 1px;
-}
-
-.brand-title .bottom {
-  font-size: 32px;
-  transition: all 0.3s ease;
-  text-shadow: 2px 2px 4px rgba(0, 207, 255, 0.2);
-  letter-spacing: 1px;
 }
 
 .brand-title::after {

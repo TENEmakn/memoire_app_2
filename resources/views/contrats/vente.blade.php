@@ -12,7 +12,7 @@
                     <div class="mb-4">
                         <h3 class="h5 text-info">1. Parties au Contrat</h3>
                         <p>Entre les soussignés :</p>
-                        <p><strong>CGV MOTORS</strong>, société de vente de véhicules, située à [Adresse], représentée par [Nom du représentant] en qualité de [Fonction], ci-après dénommée "le Vendeur"</p>
+                        <p><strong>CGV Motors</strong>, société de vente de véhicules, située à [Adresse], représentée par [Nom du représentant] en qualité de [Fonction], ci-après dénommée "le Vendeur"</p>
                         <p>Et</p>
                         <p>M./Mme [Nom de l'acheteur], demeurant à [Adresse], ci-après dénommé(e) "l'Acheteur"</p>
                     </div>
@@ -89,4 +89,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection
