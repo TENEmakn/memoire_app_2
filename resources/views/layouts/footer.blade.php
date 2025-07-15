@@ -83,7 +83,7 @@
 </footer>
 
 <!-- Chatbot for information -->
-<div class="chat-bot-container" id="chatBotContainer">
+<!-- <div class="chat-bot-container" id="chatBotContainer">
     <div class="chat-bot-toggle" id="chatBotToggle">
         <i class="fas fa-comments"></i>
     </div>
@@ -106,7 +106,7 @@
             </button>
         </div>
     </div>
-</div>
+</div> -->
 
 <style>
     .social-icon {
