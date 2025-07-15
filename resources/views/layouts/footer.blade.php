@@ -16,7 +16,7 @@
             <!-- Logo and Social Media -->
             <div class="col-md-3 mb-4 mb-md-0">
                 <div class="mb-3">
-                    <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="footer-logo">
+                    <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="footer-logo" style="max-height: 40px;">
                 </div>
                 <p class="text-muted mb-3" style="font-size: 0.9rem;">Votre partenaire de confiance pour l'achat et la location de véhicules de qualité.</p>
                 <div class="d-flex gap-2 flex-wrap">

@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('index') }}">
             <div class="logo">
-                <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="logo-img">
+                <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="logo-img" style="max-height: 40px;">
             </div>
             @Auth
             @if(Auth::user()->status == 'admin' || Auth::user()->status == 'gestionnaire')

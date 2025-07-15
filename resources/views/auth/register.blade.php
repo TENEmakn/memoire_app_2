@@ -23,7 +23,7 @@
   <div class="card">
     <a href="{{ route('index') }}" class="close-button" title="Retour à l'accueil">×</a>
     <div class="brand-title">
-      <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="auth-logo">
+      <img src="{{ asset('images/cgvmotors-logo.png') }}" alt="CGV Motors" class="auth-logo" style="max-height: 40px;">
     </div>
     <h5 class="text-center mb-3"><i class="bi bi-person-plus-fill me-2"></i>Créez votre compte</h5>
 
